@@ -1,0 +1,36 @@
+<% layout('/layouts/boilerplate') %>
+<body>
+    
+    <h3>Edit your place</h3>
+    <form method="post" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="title" class="form-label">Title: </label>
+            <input type="text" name="listing[title]" placeholder="Enter place" value="<%= listing.title %>" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description: </label>
+            <textarea name='listing[description]' rows="4" cols="40" placeholder="Enter discription" class="form-control" required><%= listing.description %></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Image: </label>
+            <input type="text" name="listing[image]" placeholder="please enter URL/Link" value="<%= listing.image %>" class="form-control" required>
+        </div>
+        <div class="mb-3 row">
+            <div class="col-8">
+                <label for="location" class="form-label">Location:</label>
+                <input type="text" name="listing[location]" placeholder="Enter Location" value="<%= listing.location %>" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label for="price" class="form-label">Price: </label>
+                <input type="text" name="listing[price]" placeholder="Enter price" value="<%= listing.price %>" class="form-control" required>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="country" class="form-label">Country: </label>
+            <input type="text" name="listing[country]" placeholder="Enter Country " value="<%= listing.country %>" class="form-control" required>
+        </div>
+        <a href="/listings/<%= listing._id %>" class="btn btn-dark mb-3"><i class="fa-solid fa-arrow-left-long"></i>Back</a>
+        <button class="btn edit-btn btn-success mb-3">Edit</button>
+    </form>
+    <script src="/js/script.js"></script>
+</body>

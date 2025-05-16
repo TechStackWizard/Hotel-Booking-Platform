@@ -1,0 +1,105 @@
+body{
+    font-family: 'Plus Jakarta Sans',sans-serif !important;
+    
+}
+
+.fa-wpexplorer{
+    color: rgb(103, 168, 5);
+    font-size: 2rem;
+    margin: 10px;
+}
+
+.navbar{
+    background-color: white !important;
+}
+.navbar-nav a{
+    font-weight: 500;
+    word-spacing: 0px !important;
+}
+.navbar-brand{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-body p{
+    font-weight: 600 !important;
+
+}
+
+/* Footer */
+.f-info{
+    display: flex;
+    height: 5rem; 
+    flex-wrap: wrap;  
+    justify-content: center;
+    align-items: space-evenly;
+    background-color: aqua;
+}
+.f-info-links,.f-info-social,
+.f-info-text{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.f-info-social i{
+    font-size: 1.2rem;
+    margin-right: 10px;
+
+}
+.f-info-links a{
+    text-decoration: none !important;
+    color: black;
+    
+}
+.f-info-links a:hover{
+    text-decoration: underline !important;
+}
+
+/* Cards */
+.card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top{
+    border-radius: 10px;
+    width: 100% !important;
+    object-fit: cover !important;
+    height: 16rem;
+}
+
+.card-body{
+    padding: 0 !important;
+    margin-top: 5px;
+}
+.card-img-overlay{
+    opacity: 0 !important;
+    
+}
+.card-img-overlay:hover{
+    opacity: 0.2 !important;
+    background-color: white;
+    transition: ease-in 0.2s;
+}
+
+
+form div label{
+    font-weight: 500 !important;
+}
+
+/* Show */
+.btns{
+    display: flex;
+    gap: 5px;
+    margin-bottom: 1rem;
+}
+
+.show-img{
+    height: 40vh;
+    object-position: center;
+    object-fit: contain;
+}
