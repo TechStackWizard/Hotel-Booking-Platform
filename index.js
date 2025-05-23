@@ -3,10 +3,10 @@ const app = express();
 const path = require('path')
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate')
+const session = require('express-session');
+const flash = require('connect-flash')
 
 const ExpressError = require('./utils/ExpressError.js')
- // Assuming the model is in a folder named 'models'
- // Assuming the schema is in a folder named 'schemas'
 const listingRoutes = require('./routes/listing.js'); // Assuming the routes are in a folder named 'routes'
 const reviewRoutes = require('./routes/review.js'); // Assuming the routes are in a folder named 'routes'
 
@@ -23,8 +23,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '/public')))
 
-
 app.use(methodOverride('_method'))
+
 
 // mongoose connection
 main().then(() => {
@@ -39,6 +39,27 @@ async function main() {
 // Root Route
 app.get('/',(req,res)=>{
     res.send('Welcome to Havenlygo');
+})
+
+const sessionOptions = {
+    secret:'secretkey',
+    resave: false,
+    saveUninitialized: true,
+
+    cookie:{
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true
+    }
+};
+
+app.use(session(sessionOptions))
+app.use(flash())
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
 })
 
 app.use('/listings', listingRoutes);
