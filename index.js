@@ -13,6 +13,7 @@ const User = require('./models/user.js')
 const ExpressError = require('./utils/ExpressError.js')
 const listingRoutes = require('./routes/listing.js'); // Assuming the routes are in a folder named 'routes'
 const reviewRoutes = require('./routes/review.js'); // Assuming the routes are in a folder named 'routes'
+const userRoutes = require('./routes/user.js')
 
 
 const mongoose = require('mongoose');
@@ -85,6 +86,8 @@ app.get('/registeruser', async(req, res) => {
 
 app.use('/listings', listingRoutes);
 app.use('/listings/:id/reviews', reviewRoutes);
+app.use('/', userRoutes);
+
 
 
 
