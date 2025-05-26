@@ -1,8 +1,11 @@
 <% layout('/layouts/boilerplate') %>
 
     <body>
-        <a href="/listings" class="btn btn-dark mb-3"><i class="fa-solid fa-arrow-left-long"></i>Back</a>
         <div class="row">
+            <div class="col-2 offset-2">
+
+                <a  href="/listings" class="btn btn-dark mb-3"><i class="fa-solid fa-arrow-left-long col-8"></i></a>
+            </div>
             <div class="col-8 offset-2">
                 <div class="card-body">
                     <h4 class="card-text text-bold mb-3">
@@ -57,6 +60,9 @@
                 <h4>All Reviews</h4>
                 <div class="reviews">
                     <div class="row">
+                        <% if(listing.reviews.length === 0) {%>
+                            <p class="text-muted">No reviews yet.</p>
+                        <%} else {%>
                         <% for(review of listing.reviews){ %>
                             <div class="card mb-3 px-2 py-1 col-6 mr-2">
                                 <div class="card-body">
@@ -77,6 +83,7 @@
                                 </div>
                             </div>
                             <%} %>
+                        <% } %>
                     </div>
 
                 </div>
