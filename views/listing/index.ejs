@@ -5,7 +5,7 @@
         <!-- <form action="/listings/new">
         <button>Create New</button>
     </form> -->
-        <div class="all-listing row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+        <div class="all-listing row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 my-2">
 
             <%for(let listing of allListings){%>
                 <a href="/listings/<%= listing._id %>">
@@ -15,7 +15,7 @@
                         <img src="<%= listing.image %>" class="card-img-top" alt="listing_img">
                         <div class="card-img-overlay">
                            
-
+                            
                         </div>
                             <div class="card-body">
                                 <p class="card-text">

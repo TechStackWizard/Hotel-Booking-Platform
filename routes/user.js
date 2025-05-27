@@ -15,8 +15,11 @@ router.post('/signup', WrapAsync(async(req, res) => {
         let newUser = new User({email, username});
         let registerUser = await User.register(newUser, password)
         console.log(registerUser);
-        req.flash('success', "Welcome to HavelyGo");
-        res.redirect('/listings')
+        req.login(registerUser, (err)=>{
+            if(err) return next(err);
+            req.flash('success', "Welcome to HavelyGo");
+            res.redirect('/listings')
+        })
     } catch(err){
         console.log(err)
         req.flash('error', err.message);
