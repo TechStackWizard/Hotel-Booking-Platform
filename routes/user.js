@@ -2,25 +2,26 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const WrapAsync = require('../utils/WrapAsync');
-const passport = require('passport')
+const passport = require('passport');
+const { saveRedirectUrl } = require('../middleware');
 
 
-router.get('/signup',(req, res) => {
+router.get('/signup', (req, res) => {
     res.render('user/signup.ejs')
 })
 
-router.post('/signup', WrapAsync(async(req, res) => {
-    try{
-        let {username, email, password} = req.body;
-        let newUser = new User({email, username});
+router.post('/signup', WrapAsync(async (req, res) => {
+    try {
+        let { username, email, password } = req.body;
+        let newUser = new User({ email, username });
         let registerUser = await User.register(newUser, password)
         console.log(registerUser);
-        req.login(registerUser, (err)=>{
-            if(err) return next(err);
+        req.login(registerUser, (err) => {
+            if (err) return next(err);
             req.flash('success', "Welcome to HavelyGo");
             res.redirect('/listings')
         })
-    } catch(err){
+    } catch (err) {
         console.log(err)
         req.flash('error', err.message);
         res.redirect('/signup')
@@ -31,15 +32,23 @@ router.get('/login', (req, res) => {
     res.render('user/login.ejs')
 })
 
-router.post('/login', passport.authenticate('local', { failureRedirect: '/login' , failureFlash : true}), async(req, res) => {
-    req.flash('success','Wecome back to HavenlyGo!!');
-    res.redirect('/listings')
-})
+router.post('/login',
+    saveRedirectUrl,
+    passport.authenticate('local',
+        {
+            failureRedirect: '/login',
+            failureFlash: true
+        }),
+    async (req, res) => {
+        req.flash('success', 'Wecome back to HavenlyGo!!');
+        let requestUrl = res.locals.requestUrl || '/listings'
+        res.redirect(requestUrl)
+    })
 
 router.get('/logout', (req, res, next) => {
     req.logout(err => {
-        if(err) return next(err);
-        req.flash('success',"You are logged out!")
+        if (err) return next(err);
+        req.flash('success', "You are logged out!")
         res.redirect('/listings')
     })
 })
