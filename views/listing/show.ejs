@@ -3,7 +3,6 @@
     <body>
         <div class="row">
             <div class="col-2 offset-2">
-
                 <a  href="/listings" class="btn btn-dark mb-3"><i class="fa-solid fa-arrow-left-long col-8"></i></a>
             </div>
             <div class="col-8 offset-2">
@@ -16,6 +15,7 @@
                     <img src="<%= listing.image %>" class="card-img-top show-img" alt="listing_img">
                 </div>
 
+                <p><b>Posted By: </b><%= listing.owner.username.charAt(0).toUpperCase()+listing.owner.username.slice(1) %></p>
                 <p><b>Description : </b>
                     <%=listing.description %>
                 </p>
@@ -25,12 +25,14 @@
                 </p>
                 <p>Country : <%= listing.country %>
                 </p>
-                <div class="btns">
-                    <a href="/listings/<%= listing._id %>/edit" class="btn btn-success">Edit</a>
-                    <form method="post" action="/listings/<%= listing._id %>?_method=DELETE">
-                        <button class="btn btn-danger">Delete</button>
-                    </form>
-                </div>
+                <% if(listing.owner._id.toString() == currUser._id) {%>
+                    <div class="btns gap-4">
+                        <a href="/listings/<%= listing._id %>/edit" class="btn btn-success">Edit</a>
+                        <form method="post" action="/listings/<%= listing._id %>?_method=DELETE">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                <%}%>
                 <hr>
                 <div class="row">
                     <form class="needs-validation" action="/listings/<%= listing._id %>/reviews" method="POST"
