@@ -1,25 +1,12 @@
 const express = require('express');
 const router = express.Router({ mergeParams : true });
-
 const Listing = require('../models/listing'); // Assuming the model is in a folder named 'models'
 const Review = require('../models/review'); // Assuming the model is in a folder named 'models'
 const wrapAsync = require('../utils/WrapAsync.js')
-const ExpressError = require('../utils/ExpressError.js')
-const { reviewSchema } = require('../schema.js');
+const {validateReview} = require('../middleware.js')
 
 
 
-// Validate Review Middleware
-const validateReview = (req, res, next) => {
-    const {error} = reviewSchema.validate(req.body);
-    if(error){
-        const msg = error.details.map(el => el.message).join(',')
-        throw new ExpressError(400, msg);
-    }
-    else{
-        next();
-    }
-}
 
 // Add Review Route
 router.post('/', validateReview, wrapAsync(async (req, res) =>{

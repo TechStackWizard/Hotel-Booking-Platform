@@ -25,14 +25,14 @@
                 </p>
                 <p>Country : <%= listing.country %>
                 </p>
-                <% if(listing.owner._id.toString() == currUser._id) {%>
+                
                     <div class="btns gap-4">
                         <a href="/listings/<%= listing._id %>/edit" class="btn btn-success">Edit</a>
                         <form method="post" action="/listings/<%= listing._id %>?_method=DELETE">
                             <button class="btn btn-danger">Delete</button>
                         </form>
                     </div>
-                <%}%>
+               
                 <hr>
                 <div class="row">
                     <form class="needs-validation" action="/listings/<%= listing._id %>/reviews" method="POST"
