@@ -37,7 +37,7 @@ router.post('/',isLoggedIn, validateListing, wrapAsync(async (req, res, next) =>
 // show route
 router.get('/:id', wrapAsync(async (req, res, next) => {
     let { id } = req.params;
-    let listing = await Listing.findById(id).populate('reviews').populate('owner');
+    let listing = await Listing.findById(id).populate({path:'reviews', populate:{path:'author'}}).populate('owner');
     // console.log(listing)
     
     if(!listing){

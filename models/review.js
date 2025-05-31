@@ -2,9 +2,6 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const reviewSchema = new Schema({
-    name: {
-        type: String,
-    },
     comment: String,
     rating: {
         type: Number,

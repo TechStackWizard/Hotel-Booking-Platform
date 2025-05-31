@@ -3,7 +3,7 @@ const router = express.Router({ mergeParams : true });
 const Listing = require('../models/listing'); // Assuming the model is in a folder named 'models'
 const Review = require('../models/review'); // Assuming the model is in a folder named 'models'
 const wrapAsync = require('../utils/WrapAsync.js')
-const {validateReview, isLoggedIn} = require('../middleware.js')
+const {validateReview, isLoggedIn, isReviewAuthor} = require('../middleware.js')
 
 
 
@@ -25,7 +25,7 @@ router.post('/', isLoggedIn, validateReview, wrapAsync(async (req, res) =>{
 
 
 // Delete Review Route
-router.delete('/:reviewId', wrapAsync(async(req, res) => {
+router.delete('/:reviewId',isLoggedIn,isReviewAuthor, wrapAsync(async(req, res) => {
     let {id, reviewId} = req.params;
 
     await Listing.findByIdAndUpdate(id, {$pull: {reviews : reviewId}});

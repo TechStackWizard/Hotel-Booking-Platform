@@ -66,12 +66,12 @@
                             <div class="card mb-3 px-2 py-1 col-6 mr-2">
                                 <div class="card-body">
                                     <h5 class="card-title fs-6">
-                                        <%= review.name %>:-> (Rating: <%= review.rating %> Star)
-                                        
+                                        @<%= review.author.username %>
                                     </h5>
                                     <h6 class="card-subtitle mb-2 text-body-secondary fs-6">
                                         <%= review.createdAt.toLocaleString() %>
                                     </h6>
+                                    <p><b>Rating:</b> <%= review.rating %> Star</p>
                                     <p class="card-text mb-1">
                                         <%= review.comment %>
                                     </p>
