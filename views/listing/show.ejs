@@ -25,24 +25,20 @@
                 </p>
                 <p>Country : <%= listing.country %>
                 </p>
-                
+                <% if(currUser && listing.owner._id.equals(currUser._id)) {%>
                     <div class="btns gap-4">
                         <a href="/listings/<%= listing._id %>/edit" class="btn btn-success">Edit</a>
                         <form method="post" action="/listings/<%= listing._id %>?_method=DELETE">
                             <button class="btn btn-danger">Delete</button>
                         </form>
                     </div>
-               
+               <%}%>
+                    <% if(currUser && !listing.owner._id.equals(currUser._id)) {%>
                 <hr>
                 <div class="row">
                     <form class="needs-validation" action="/listings/<%= listing._id %>/reviews" method="POST"
                         novalidate>
                         <h4 class="fw-bolder">Leave a Review</h4>
-                        <div class="name">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" name="review[name]" id="name" class="form-control"
-                                placeholder="Enter your name" required>
-                        </div>
                         <div class="range">
                             <label for="customRange2" class="form-label">Rating</label>
                             <input type="range" class="form-range" min="1" max="5" id="customRange2"
@@ -57,6 +53,7 @@
                         <button class="my-4 btn btn-dark">Submit</button>
                     </form>
                 </div>
+                <%}%>
 
                 <hr>
                 <h4>All Reviews</h4>
