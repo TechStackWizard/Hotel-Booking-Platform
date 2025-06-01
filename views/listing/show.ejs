@@ -33,7 +33,13 @@
                         </form>
                     </div>
                <%}%>
-                    <% if(currUser && !listing.owner._id.equals(currUser._id)) {%>
+               <%if(!currUser) {%>
+                <div class="alert alert-warning" role="alert">
+                    You must be logged in to leave a review.
+                    <a href="/login" class="alert-link">Login</a>
+                </div>
+                <%}%>
+                    <% if(currUser) {%>
                 <hr>
                 <div class="row">
                     <form class="needs-validation" action="/listings/<%= listing._id %>/reviews" method="POST"
