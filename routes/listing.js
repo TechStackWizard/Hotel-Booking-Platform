@@ -25,32 +25,14 @@ router.get('/:id', wrapAsync(listingController.index));
 
 
 // Edit Route
-router.get('/:id/edit',isLoggedIn, isOwner , wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    let listing = await Listing.findById(id)
-    if(!listing){
-        req.flash('error', 'Listing Not Found');
-        return res.redirect('/listings');
-    }
-    res.render('listing/edit.ejs', { listing });
-}));
+router.get('/:id/edit',isLoggedIn, isOwner , wrapAsync(listingController.editFormRender));
 
 
 // Update Route
-router.put('/:id',isLoggedIn, isOwner, wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    await Listing.findByIdAndUpdate(id, req.body.listing, { new: true });
-    req.flash('success', 'Listing Updated Successfully');
-    res.redirect(`/listings/${id}`);
-}));
+router.put('/:id',isLoggedIn, isOwner, wrapAsync(listingController.updateListing));
 
 
 // Delete Route
-router.delete('/:id',isLoggedIn, isOwner , wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    await Listing.findByIdAndDelete(id);
-    req.flash('success', 'Listing Deleted Successfully');
-    res.redirect('/listings')
-}));
+router.delete('/:id',isLoggedIn, isOwner , wrapAsync(listingController.deleteListing));
 
 module.exports = router;
