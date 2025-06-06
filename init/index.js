@@ -17,7 +17,7 @@ main().then(()=>{
 
 const initDB = async () =>{
     await Listing.deleteMany({}).then(() => console.log('Data Deleted successfully')) // Clear the collection before inserting new data
-    // initData.data = initData.data.map((obj) => ({...obj, owner:'68346908a557fbf90559ffee'}));
+    initData.data = initData.data.map((obj) => ({...obj, owner:'68346908a557fbf90559ffee'}));
     await Listing.insertMany(initData.data) // Insert the data from the data.js file
         .then(() => console.log('Data inserted successfully'))
         .catch(err => console.error('Error inserting data:', err))

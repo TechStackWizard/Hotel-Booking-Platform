@@ -16,7 +16,7 @@
                 </div>
 
                 <p><b>Posted By: </b>
-                    <%= listing.owner.username %>
+                    <%= listing.owner.username.charAt(0).toUpperCase()+listing.owner.username.slice(1) %>
                 </p>
                 <p><b>Description : </b>
                     <%=listing.description %>
