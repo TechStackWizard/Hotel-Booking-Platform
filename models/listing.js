@@ -11,9 +11,8 @@ const listingSchema = new Schema({
         type: String,
     },
     image:{
-        type: String,
-        default: "https://cdn.wallpapersafari.com/78/25/JU9bGD.jpg",
-        set: (v) => v==='' ? "https://cdn.wallpapersafari.com/78/25/JU9bGD.jpg" : v,
+        filename: String,
+        url: String,
     },
     price:{
         type: Number,

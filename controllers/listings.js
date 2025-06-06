@@ -1,6 +1,5 @@
 const Listing = require('../models/listing.js')
 
-
 module.exports.index = async (req, res, next) => {
     let { id } = req.params;
     let listing = await Listing.findById(id).populate({path:'reviews', populate:{path:'author'}}).populate('owner');
@@ -22,8 +21,10 @@ module.exports.createNewListing = async (req, res, next) => {
     // if(!req.body.listing){
     //     throw new ExpressError(400, 'Invalid Listing Data');
     // }
+    let {filename, path} = req.file;
     const newListing = new Listing(req.body.listing);
     newListing.owner = req.user._id;
+    newListing.image = {url:path, filename}
     await newListing.save();
     req.flash('success', 'New Listing Created');
     res.redirect('/listings');
