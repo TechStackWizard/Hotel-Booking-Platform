@@ -33,7 +33,11 @@ const listingSchema = new Schema({
     owner: {
         type: Schema.Types.ObjectId,
         ref:'User',
-    }
+    },
+    // category:{
+    //     type:String,
+    //     enum:['mountain','rooms','cities','castles','pools','camping','arctic','farming']
+    // }
 }); 
 
 

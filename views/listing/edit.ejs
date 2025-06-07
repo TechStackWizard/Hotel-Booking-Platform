@@ -12,8 +12,12 @@
             <textarea name='listing[description]' rows="4" cols="40" placeholder="Enter discription" class="form-control" required><%= listing.description %></textarea>
         </div>
         <div class="mb-3">
-            <label for="image" class="form-label">Image: </label>
-            <input type="file" name="listing[image]" placeholder="please enter URL/Link" value="<%= listing.image %>" class="form-control">
+            <label for="image" class="form-label">Original Image: </label><br>
+            <img style="width: 281px; border-radius: 5px;" src="<%= originalImageUrl %>" >
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Upload New Image: </label>
+            <input type="file" name="listing[image]" class="form-control">
         </div>
         <div class="mb-3 row">
             <div class="col-8">
@@ -29,8 +33,10 @@
             <label for="country" class="form-label">Country: </label>
             <input type="text" name="listing[country]" placeholder="Enter Country " value="<%= listing.country %>" class="form-control" required>
         </div>
-        <a href="/listings/<%= listing._id %>" class="btn btn-dark mb-3"><i class="fa-solid fa-arrow-left-long"></i>Back</a>
-        <button class="btn edit-btn btn-success mb-3">Save</button>
+        <div class="mb-3 gap-2 d-flex">
+            <a href="/listings/<%= listing._id %>" class="btn btn-dark mb-3"><i class="fa-solid fa-arrow-left-long"></i>Back</a>
+            <button class="btn edit-btn btn-success mb-3">Save</button>
+        </div>
     </form>
     <!-- <script src="/js/script.js"></script> -->
 </body>

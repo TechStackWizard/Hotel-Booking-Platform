@@ -81,6 +81,9 @@ body{
     opacity: 0 !important;
     
 }
+.card-text{
+    text-decoration: none !important;
+}
 .card-img-overlay:hover{
     opacity: 0.2 !important;
     background-color: white;
