@@ -2,7 +2,7 @@
 <body>
     
     <h3>Edit your place</h3>
-    <form method="post" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate>
+    <form method="post" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" enctype="multipart/form-data" novalidate>
         <div class="mb-3">
             <label for="title" class="form-label">Title: </label>
             <input type="text" name="listing[title]" placeholder="Enter place" value="<%= listing.title %>" class="form-control" required>
@@ -13,7 +13,7 @@
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Image: </label>
-            <input type="text" name="listing[image]" placeholder="please enter URL/Link" value="<%= listing.image %>" class="form-control" required>
+            <input type="file" name="listing[image]" placeholder="please enter URL/Link" value="<%= listing.image %>" class="form-control">
         </div>
         <div class="mb-3 row">
             <div class="col-8">

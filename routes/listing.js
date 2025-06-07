@@ -31,7 +31,7 @@ router.get('/:id/edit', isLoggedIn, isOwner, wrapAsync(listingController.editFor
 // Update Route
 router.route('/:id')
     .get(wrapAsync(listingController.index))
-    .put(isLoggedIn, isOwner, wrapAsync(listingController.updateListing))
+    .put(isLoggedIn, isOwner, validateListing, upload.single('listing[image]'), wrapAsync(listingController.updateListing))
     .delete(isLoggedIn, isOwner, wrapAsync(listingController.deleteListing));
 
 

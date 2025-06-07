@@ -13,7 +13,7 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'havenlyGo_dev',
-    aloowedformat: ['png','jpeg','jpg'] // supports promises as well
+    allowedformat: ['png','jpeg','jpg'] // supports promises as well
     },
 });
 
