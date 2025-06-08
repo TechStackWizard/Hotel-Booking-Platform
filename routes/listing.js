@@ -6,9 +6,27 @@ const { isLoggedIn, isOwner, validateListing } = require('../middleware.js');
 
 const listingController = require('../controllers/listings.js')
 
-const multer  = require('multer')
-const {storage} = require('../cloudineryConfig.js')
+const multer = require('multer')
+const { storage } = require('../cloudineryConfig.js')
 const upload = multer({ storage })
+
+
+// Search Route
+router.route('/search')
+    .get(async (req, res) => {
+        let des = req.query.destination;
+        if (!des) {
+            req.flash('error', 'Please enter a search term');
+            return res.redirect('/listings');
+        }
+        let allListings = await Listing.find({
+            $or: [
+                { country: { $regex: des, $options: 'i' } },
+                { location: { $regex: des, $options: 'i' } }
+            ]
+        })
+        res.render('listing/index.ejs', { allListings });
+    })
 
 // Show route
 router
@@ -22,18 +40,14 @@ router
 // New Route
 router.get('/new', isLoggedIn, listingController.renderNewForm);
 
-
-
 // Edit Route
 router.get('/:id/edit', isLoggedIn, isOwner, wrapAsync(listingController.editFormRender));
-
 
 // Update Route
 router.route('/:id')
     .get(wrapAsync(listingController.index))
     .put(isLoggedIn, isOwner, validateListing, upload.single('listing[image]'), wrapAsync(listingController.updateListing))
-    .delete(isLoggedIn, isOwner,validateListing, wrapAsync(listingController.deleteListing));
-
+    .delete(isLoggedIn, isOwner, validateListing, wrapAsync(listingController.deleteListing));
 
 
 module.exports = router;
