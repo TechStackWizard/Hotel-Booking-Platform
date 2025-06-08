@@ -1,4 +1,4 @@
-if(process.env.NODE_ENV != "production"){
+if (process.env.NODE_ENV != "production") {
     require('dotenv').config();
 }
 
@@ -8,6 +8,7 @@ const path = require('path')
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate')
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const flash = require('connect-flash')
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -19,9 +20,11 @@ const listingRoutes = require('./routes/listing.js'); // Assuming the routes are
 const reviewRoutes = require('./routes/review.js'); // Assuming the routes are in a folder named 'routes'
 const userRoutes = require('./routes/user.js')
 
+require('dotenv').config();
 
 const mongoose = require('mongoose');
-const MONGO_URI = 'mongodb://localhost:27017/havenlygo'; // Replace with your MongoDB URI
+// const MONGO_URL = "mongodb://localhost:27017/havenlygo";
+const dburl = process.env.ATLAS_URL; // Replace with your MongoDB URI
 
 
 app.engine('ejs', ejsMate);
@@ -42,25 +45,35 @@ main().then(() => {
     console.log('Error connecting to MongoDB:', err);
 })
 async function main() {
-    await mongoose.connect(MONGO_URI);
+    await mongoose.connect(dburl);
 }
 
-// Root Route
-app.get('/',(req,res)=>{
-    res.send('Welcome to Havenlygo');
+const store = MongoStore.create({
+    mongoUrl: dburl,
+    touchAfter: 24 * 3600, // time in seconds
+    crypto: {
+        secret: process.env.SECRET
+    }
+})
+
+store.on('error', () => {
+    console.log('ERROR in MONGO SESSION STORE');
 })
 
 const sessionOptions = {
-    secret:'secretkey',
+    store,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
 
-    cookie:{
+    cookie: {
         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true
     }
 };
+
+
 
 app.use(session(sessionOptions))
 app.use(flash())
@@ -105,7 +118,7 @@ app.all(/.*/, (req, res, next) => {
 // default Error Handling Middleware
 app.use((err, req, res, next) => {
     let { status = 501, message = 'Something went wrong' } = err;
-    res.render('listing/error.ejs', {message, status})
+    res.render('listing/error.ejs', { message, status })
 });
 
 

@@ -29,6 +29,11 @@ body{
 
 /* Footer */
 
+.footer{
+    position: relative;
+    bottom: 0;
+    
+}
 .f-info{
     display: flex;
     height: 5rem; 

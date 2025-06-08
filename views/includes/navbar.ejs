@@ -18,7 +18,7 @@
       }
       .search-btn:hover{
         
-        background-color: rgb(132, 163, 20);
+        background-color: rgb(103, 168, 5);
       }
 
       .search-input{
@@ -53,8 +53,8 @@
         <div class="navbar-nav ms-auto gap-2">
           <a class="nav-link border-black" href="/listings/new">Add New Place</a>
           <% if(!currUser) { %>
-            <a class="nav-link text-bg-primary btn" href="/signup">Sign Up</a>
-            <a class="nav-link text-bg-success border-black btn" href="/login">Log in</a>
+            <a class="nav-link btn btn-outline-primary text-bold" style="border:1px solid black" href="/signup">Sign Up</a>
+            <a class="nav-link text-bg-success border-black btn" style="border:1px solid black" href="/login">Log in</a>
             <% } %>
               <% if(currUser){ %>
                 <a class="nav-link text-bg-danger btn" href="/logout">Log Out</a>
