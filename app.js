@@ -13,6 +13,7 @@ const flash = require('connect-flash')
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user.js');
+const Listing = require('./models/listing.js');
 
 
 const ExpressError = require('./utils/ExpressError.js')
@@ -92,15 +93,10 @@ app.use((req, res, next) => {
     next();
 })
 
-// app.get('/registeruser', async(req, res) => {
-//     let fakeUser = new User({
-//         email: 'abc@gmail.com',
-//         username: 'abc',
-//     });
-
-//     let registeredUser = await User.register(fakeUser, 'abcpass');
-//     res.send(registeredUser);
-// })
+app.get('/', async (req, res) => {
+    let allListings = await Listing.find();
+    res.render('listing/index.ejs', { allListings });
+});
 
 app.use('/listings', listingRoutes);
 app.use('/listings/:id/reviews', reviewRoutes);
