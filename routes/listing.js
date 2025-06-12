@@ -3,7 +3,6 @@ const router = express.Router();
 const Listing = require('../models/listing');
 const wrapAsync = require('../utils/WrapAsync.js')
 const { isLoggedIn, isOwner, validateListing } = require('../middleware.js');
-
 const listingController = require('../controllers/listings.js')
 
 const multer = require('multer')
@@ -25,6 +24,10 @@ router.route('/search')
                 { location: { $regex: des, $options: 'i' } }
             ]
         })
+        if(allListings.length == 0){
+            req.flash('error',`No listing found for ${des}`)
+            return res.redirect('/listings');
+        }
         res.render('listing/index.ejs', { allListings });
     })
 
