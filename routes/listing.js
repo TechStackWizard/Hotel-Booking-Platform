@@ -11,7 +11,7 @@ const upload = multer({ storage })
 
 
 // Search Route
-router.route('/search')
+router.route('/search/q')
     .get(async (req, res) => {
         let des = req.query.destination;
         if (!des) {
