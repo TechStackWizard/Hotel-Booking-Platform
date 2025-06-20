@@ -9,6 +9,11 @@ const multer = require('multer')
 const { storage } = require('../cloudineryConfig.js')
 const upload = multer({ storage })
 
+// Update Route
+router.route('/:id')
+    .get(wrapAsync(listingController.index))
+    .put(isLoggedIn, isOwner, validateListing, upload.single('listing[image]'), wrapAsync(listingController.updateListing))
+    .delete(isLoggedIn, isOwner, validateListing, wrapAsync(listingController.deleteListing));
 
 // Search Route
 router.route('/search/q')
@@ -46,11 +51,6 @@ router.get('/new', isLoggedIn, listingController.renderNewForm);
 // Edit Route
 router.get('/:id/edit', isLoggedIn, isOwner, wrapAsync(listingController.editFormRender));
 
-// Update Route
-router.route('/:id')
-    .get(wrapAsync(listingController.index))
-    .put(isLoggedIn, isOwner, validateListing, upload.single('listing[image]'), wrapAsync(listingController.updateListing))
-    .delete(isLoggedIn, isOwner, validateListing, wrapAsync(listingController.deleteListing));
 
 
 module.exports = router;
