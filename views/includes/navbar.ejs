@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,15 +16,12 @@
         margin-right: 5px;
       }
       .search-btn:hover{
-        
         background-color: rgb(103, 168, 5);
       }
-
       .search-input{
         border: 1px solid gray;
         border-radius: 1rem;
         padding: 0.5rem 0.75rem;
-       
       }
     </style>
 </head>
@@ -40,7 +36,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link border-black" href="/listings">All Listings</a>
+          <a class="nav-link border border-dark rounded" href="/listings">All Listings</a>
         </div>
 
         <div class="ms-auto">
@@ -51,7 +47,7 @@
         </div>
 
         <div class="navbar-nav ms-auto gap-2">
-          <a class="nav-link border-black" href="/listings/new">Add New Place</a>
+          <a class="nav-link border border-dark rounded" href="/listings/new">Add New Place</a>
           <% if(!currUser) { %>
             <a class="nav-link btn btn-outline-primary text-bold" style="border:1px solid black" href="/signup">Sign Up</a>
             <a class="nav-link text-bg-success border-black btn" style="border:1px solid black" href="/login">Log in</a>
