@@ -35,8 +35,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link border border-dark rounded" href="/listings">All Listings</a>
+        <div class="navbar-nav my-2">
+          <a class="nav-link border border-dark rounded px-2" href="/listings">All Listings</a>
         </div>
 
         <div class="ms-auto">
@@ -47,10 +47,10 @@
         </div>
 
         <div class="navbar-nav ms-auto gap-2">
-          <a class="nav-link border border-dark rounded" href="/listings/new">Add New Place</a>
+          <a class="nav-link border border-dark rounded my-2 px-2" href="/listings/new">Add New Place</a>
           <% if(!currUser) { %>
-            <a class="nav-link btn btn-outline-primary text-bold" style="border:1px solid black" href="/signup">Sign Up</a>
-            <a class="nav-link text-bg-success border-black btn" style="border:1px solid black" href="/login">Log in</a>
+            <a class="nav-link btn btn-outline text-bold" style="border:1px solid black" href="/signup">Sign Up</a>
+            <a class="nav-link text-bg-success border border-dark btn" href="/login">Log in</a>
             <% } %>
               <% if(currUser){ %>
                 <a class="nav-link text-bg-danger btn" href="/logout">Log Out</a>
