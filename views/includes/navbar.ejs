@@ -49,11 +49,11 @@
         <div class="navbar-nav ms-auto gap-2">
           <a class="nav-link border border-dark rounded my-2 px-2" href="/listings/new">Add New Place</a>
           <% if(!currUser) { %>
-            <a class="nav-link btn btn-sm btn-outline text-bold" style="border:1px solid black" href="/signup">Sign Up</a>
-            <a class="nav-link text-bg-success border border-dark btn btn-sm" href="/login">Log in</a>
+            <a class="nav-link text-bold border rounded"  href="/signup">Sign Up</a>
+            <a class="nav-link text-bg-success border border-success rounded" href="/login">Log in</a>
             <% } %>
               <% if(currUser){ %>
-                <a class="nav-link text-bg-danger btn btn-sm" href="/logout">Log Out</a>
+                <a class="nav-link text-bg-danger border border-danger" href="/logout">Log Out</a>
                 <% } %>
         </div>
       </div>
