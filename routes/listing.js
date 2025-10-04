@@ -14,7 +14,7 @@ const upload = multer({ storage })
 
 
 // Search Route
-router.route('/search')
+router.route('/search/q')
     .get(async (req, res) => {
         let des = req.query.destination;
         if (!des) {
@@ -62,9 +62,7 @@ router.get('/:id/edit', isLoggedIn, isOwner, wrapAsync(listingController.editFor
 router.route('/:id')
     .get(wrapAsync(listingController.index))
     .put(isLoggedIn, isOwner, validateListing, upload.single('listing[image]'), wrapAsync(listingController.updateListing))
-    .delete(isLoggedIn, isOwner, validateListing, wrapAsync(listingController.deleteListing));
+    .delete(isLoggedIn, isOwner, wrapAsync(listingController.deleteListing));
 
-// router.route('/:id/booking')
-//     .get(isLoggedIn, listingController.booking)
-// // .post()
+
 module.exports = router;
