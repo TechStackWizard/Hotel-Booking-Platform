@@ -3,40 +3,44 @@
     <body>
         <div class=" offset">
 
-            <h3>Create a New Listing</h3>
-            
-        <form method="post" action="/listings" class="needs-validation" enctype="multipart/form-data" novalidate>
-            <div class="mb-3">
-                <label for="title" class="form-label">Title </label>
-                <input type="text" name="listing[title]" placeholder="Enter place" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="description" class="form-label">Description </label>
-                <textarea name='listing[description]' placeholder="Enter discription" class="form-control" required></textarea>
+            <h3 class="mt-4 fw-semibold">Create a New Listing</h3>
 
-            </div>
-            <div class="mb-3">
-                <label for="image" class="form-label">Select Image</label>
-                <input class="form-control" type="file" id="image" name="listing[image]" accept="image/*" required>
-              </div>
-
-            <div class="mb-3 row">
-                <div class="col-8">
-                    <label for="location" class="form-label">Location</label>
-                    <input type="text" name="listing[location]" placeholder="Enter Location" class="form-control" required>
+            <form method="post" action="/listings" class="needs-validation" enctype="multipart/form-data" novalidate>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title </label>
+                    <input type="text" name="listing[title]" placeholder="Enter place" class="form-control" required>
                 </div>
-                <div class="col-md-4">
-                    <label for="price" class="form-label">Price </label>
-                    <input type="text" name="listing[price]" placeholder="Enter price" class="form-control" required>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="country" class="form-label">Country </label>
-                <input type="text" name="listing[country]" placeholder="Enter Country" class="form-control" required>
-            </div>
-            <button class="btn add-btn btn-success mb-3">ADD</button>
-        </form>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description </label>
+                    <textarea name='listing[description]' placeholder="Enter discription" class="form-control"
+                        required></textarea>
 
-        <!-- <script src="/js/script.js"></script> -->
-    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Select Image</label>
+                    <input class="form-control" type="file" id="image" name="listing[image]" accept="image/*" required>
+                </div>
+
+                <div class="mb-3 row">
+                    <div class="col-8">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" name="listing[location]" placeholder="Enter Location" class="form-control"
+                            required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="price" class="form-label">Price </label>
+                        <input type="text" name="listing[price]" placeholder="Enter price" class="form-control"
+                            required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="country" class="form-label">Country </label>
+                    <input type="text" name="listing[country]" placeholder="Enter Country" class="form-control"
+                        required>
+                </div>
+                <button class="btn add-btn btn-success mb-3">ADD</button>
+            </form>
+
+            <!-- <script src="/js/script.js"></script> -->
+        </div>
     </body>

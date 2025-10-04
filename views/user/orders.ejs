@@ -1,0 +1,130 @@
+<% layout('layouts/boilerplate') %>
+
+    <div class="container mt-5">
+        <h2 class="mb-4">My Hotel Bookings</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Hotel</th>
+                        <th>Name</th>
+                        <th>Hotel Room</th>
+                        <th>Check-In</th>
+                        <th>Check-Out</th>
+                        <th>Guests</th>
+                        <th>Total Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (orders.length===0) { %>
+                        <tr>
+                            <td colspan="7" class="text-center">No bookings yet</td>
+                        </tr>
+                        <% } else { %>
+                            <% orders.forEach(order=> { %>
+                                <tr>
+                                    <td>
+                                        <img style="width: 150px;" src="<%= order.bookedHotel.image.url %>" alt="">
+                                    </td>
+                                    <td class="text-capitalize">
+                                        <%= order.name %>
+                                    </td>
+                                    <td class="text-capitalize">
+                                        <%= order.room %>
+                                    </td>
+                                    <td>
+                                        <%= order.checkin.toDateString() %>
+                                    </td>
+                                    <td>
+                                        <%= order.checkout.toDateString() %>
+                                    </td>
+                                    <td>
+                                        <%= order.guests %>
+                                    </td>
+                                    <td>₹<%= order.totalPrice %>
+                                    </td>
+
+                                    <td>
+                                        <% if(order.isPaid) { %>
+                                            <button class="btn btn-success btn-sm" disabled>Paid</button>
+                                            <% } else { %>
+                                                <button class="btn btn-primary btn-sm pay-now-btn"
+                                                    data-booking-id="<%= order._id %>"
+                                                    data-price="<%= order.totalPrice %>">Pay Now</button>
+                                                <% } %>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3">
+                <div class="modal-header">
+                    <h5 class="modal-title">Checkout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p id="checkout-amount"></p>
+                    <button id="rzp-button1" class="btn btn-success">Proceed to Pay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        document.querySelectorAll(".pay-now-btn").forEach(btn => {
+            btn.addEventListener("click", async function () {
+                const bookingId = this.dataset.bookingId;
+                const price = this.dataset.price;
+
+                // Show modal
+                const modal = new bootstrap.Modal(document.getElementById('checkoutModal'));
+                document.getElementById("checkout-amount").innerText = `Amount: ₹${price}`;
+                modal.show();
+
+                // On click of Razorpay button
+                document.getElementById("rzp-button1").onclick = async function () {
+                    // Create Razorpay order via backend
+                    const response = await fetch(`/orders/pay/${bookingId}`, { method: "POST" });
+                    const data = await response.json();
+
+                    var options = {
+                        "key": data.key_id,
+                        "amount": data.order.amount,
+                        "currency": "INR",
+                        "name": "Hotel Booking",
+                        "description": "Booking Payment",
+                        "order_id": data.order.id,
+                        "handler": function (res) {
+                            // Send payment details to backend for verification
+                            const form = document.createElement("form");
+                            form.method = "POST";
+                            form.action = "/orders/payment/verify";
+
+                            form.innerHTML = `
+                            <input type="hidden" name="razorpay_order_id" value="${res.razorpay_order_id}">
+                            <input type="hidden" name="razorpay_payment_id" value="${res.razorpay_payment_id}">
+                            <input type="hidden" name="razorpay_signature" value="${res.razorpay_signature}">
+                            <input type="hidden" name="bookingId" value="${bookingId}">
+                        `;
+                            document.body.appendChild(form);
+                            form.submit();
+                        },
+                        "theme": {
+                            "color": "#3399cc"
+                        }
+                    };
+                    var rzp1 = new Razorpay(options);
+                    rzp1.open();
+                }
+            });
+        });
+    </script>

@@ -1,0 +1,127 @@
+<% layout('layouts/boilerplate') %>
+
+    <!-- Booking Form -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card shadow-lg rounded-4">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4 text-center text-primary mt-4">Book Your Stay</h3>
+                        <hr>
+                        <div class="card-body">
+                            <h4 class="card-text text-bold mb-3">
+                                <%= listing.title %>
+                            </h4>
+                        </div>
+                        <div class="card show-card">
+                            <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing_img">
+                        </div>
+
+                        <form action="/listings/<%= listing._id %>/booking" method="POST">
+
+                            <!-- Full Name -->
+                            <div class="my-3">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" name="name" id="name" class="form-control"
+                                    placeholder="Enter your full name" required>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" name="email" id="email" class="form-control"
+                                    placeholder="example@email.com" required>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" name="phone" id="phone" class="form-control"
+                                    placeholder="+91 9876543210" required>
+                            </div>
+
+                            <!-- Dates -->
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="checkin" class="form-label">Check-in</label>
+                                    <input type="date" name="checkin" id="checkin" class="form-control" required>
+                                </div>
+                                <div class="col">
+                                    <label for="checkout" class="form-label">Check-out</label>
+                                    <input type="date" name="checkout" id="checkout" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <!-- Guests -->
+                            <div class="mb-3">
+                                <label for="guests" class="form-label">Number of Guests</label>
+                                <input type="number" name="guests" id="guests" class="form-control" min="1" max="10"
+                                    required>
+                            </div>
+
+                            <!-- Room Type -->
+                            <div class="mb-4">
+                                <label for="room" class="form-label"><span class="text-danger">** Room Type [All
+                                        Price are for demo
+                                        purposes]</span>
+                                </label>
+                                <select name="room" id="room" class="form-select" required>
+                                    <option value="" disabled selected>Select a room</option>
+                                    <option value="single">Single Room - ₹10/night</option>
+                                    <option value="double">Double Room - ₹25/night</option>
+                                    <option value="suite">Luxury Suite - ₹30/night</option>
+                                </select>
+                            </div>
+
+                            <!-- Price Display -->
+                            <div class="alert alert-info text-center fw-bold" id="priceBox">
+                                Total Price: ₹0
+                            </div>
+
+                            <!-- Submit -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">Book Now</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Price Calculation Script -->
+    <script>
+        const checkin = document.getElementById('checkin');
+        const checkout = document.getElementById('checkout');
+        const room = document.getElementById('room');
+        const priceBox = document.getElementById('priceBox');
+
+        const roomRates = {
+            single: 10,
+            double: 25,
+            suite: 30
+        };
+
+        function calculatePrice() {
+            const checkinDate = new Date(checkin.value);
+            const checkoutDate = new Date(checkout.value);
+            const selectedRoom = room.value;
+
+            if (checkinDate && checkoutDate && checkoutDate >= checkinDate && selectedRoom) {
+                const diffTime = checkoutDate - checkinDate;
+                const pricePerNight = roomRates[selectedRoom];
+
+                const totalPrice = diffTime == 0 ? 1 * pricePerNight : diffTime / (1000 * 60 * 60 * 24) * pricePerNight;
+
+                priceBox.textContent = `Total Price: ₹${totalPrice}`;
+            } else {
+                priceBox.textContent = `Total Price: ₹0`;
+            }
+        }
+
+        checkin.addEventListener('change', calculatePrice);
+        checkout.addEventListener('change', calculatePrice);
+        room.addEventListener('change', calculatePrice);
+    </script>

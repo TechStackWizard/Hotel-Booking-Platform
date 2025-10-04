@@ -3,7 +3,8 @@
     <body>
         <div class="row">
             <div class="col-sm-2 offset-sm-2 p-xs-4 my-3">
-                <a href="/listings" class="btn btn-dark mb-3 d-inline"><i class="fa-solid fa-arrow-left-long col-8">&nbsp;Back</i></a>
+                <a href="/listings" class="btn btn-dark mb-3 d-inline"><i
+                        class="fa-solid fa-arrow-left-long col-8">&nbsp;Back</i></a>
             </div>
             <div class="col-sm-8 offset-sm-2 px-xs-10">
                 <div class="card-body">
@@ -35,6 +36,7 @@
                         </form>
                     </div>
                     <%}%>
+                        <a href="/listings/<%= listing._id%>/booking" class="btn btn-primary">Book Now</a>
                         <%if(!currUser) {%>
                             <div class="alert alert-warning" role="alert">
                                 You must be logged in to leave a review.
@@ -92,8 +94,9 @@
                                                                         <%= review.createdAt.toLocaleString() %>
                                                                     </h6>
 
-                                                            
-                                                                    <p class="starability-result" data-rating="<%= review.rating %>">
+
+                                                                    <p class="starability-result"
+                                                                        data-rating="<%= review.rating %>">
                                                                         Rated: <%= review.rating %> stars
                                                                     </p>
                                                                     <p class="card-text mb-1">
@@ -102,8 +105,11 @@
                                                                     <form
                                                                         action="/listings/<%= listing._id %>/reviews/<%= review._id%>?_method=DELETE"
                                                                         method="POST">
-                                                                        <button
-                                                                            class="btn btn-dark px-1 py-0 mt-0">Delete</button>
+
+                                                                        <button class="btn btn-dark px-1 py-0 mt-0">
+                                                                            Delete
+                                                                        </button>
+
                                                                     </form>
 
                                                                 </div>

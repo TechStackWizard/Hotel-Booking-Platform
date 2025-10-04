@@ -13,7 +13,7 @@ module.exports.signUp = async (req, res, next) => {
         let { username, email, password } = req.body;
         let newUser = new User({ email, username });
         let registerUser = await User.register(newUser, password)
-        console.log(registerUser);
+        // console.log(registerUser);
         req.login(registerUser, (err) => {
             if (err) return next(err);
             req.flash('success', "Welcome to HavelyGo");
@@ -27,9 +27,9 @@ module.exports.signUp = async (req, res, next) => {
 }
 
 module.exports.login = async (req, res) => {
-        req.flash('success', 'Wecome back to HavenlyGo!!');
-        let requestUrl = res.locals.requestUrl || '/listings'
-        res.redirect(requestUrl)
+    req.flash('success', 'Wecome back to HavenlyGo!!');
+    let requestUrl = res.locals.requestUrl || '/listings'
+    res.redirect(requestUrl)
 }
 
 

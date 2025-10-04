@@ -1,11 +1,10 @@
 <% layout('/layouts/boilerplate') %>
 
-    <div  class="row">
-
-        <h3 class="mb-3 col-8 offset-2">SignUp on HavelyGo</h3>
-
-        <form style="height: 75vh;" method="post" action="/signup" class="needs-validation" novalidate>
-            <div class="mb-3 col-8 offset-2">
+    <div class="row">
+        <form style="height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center;"
+            method="post" action="/signup" class="needs-validation" novalidate>
+            <h3 class="mb-3 col-8 fw-bolder">SignUp on HavelyGo</h3>
+            <div class="mb-3 col-8">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username </label>
                     <input type="text" name="username" placeholder="Enter username" class="form-control" required>
@@ -22,4 +21,5 @@
 
             </div>
         </form>
+
     </div>

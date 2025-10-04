@@ -19,11 +19,14 @@ const Listing = require('./models/listing.js');
 const ExpressError = require('./utils/ExpressError.js')
 const listingRoutes = require('./routes/listing.js'); // Assuming the routes are in a folder named 'routes'
 const reviewRoutes = require('./routes/review.js'); // Assuming the routes are in a folder named 'routes'
-const userRoutes = require('./routes/user.js')
+const userRoutes = require('./routes/user.js');
+const bookingRoutes = require('./routes/booking.js');
+const ordersRoutes = require('./routes/order.js');
 
 require('dotenv').config();
 
 const mongoose = require('mongoose');
+// const { default: orders } = require('razorpay/dist/types/orders.js');
 // const MONGO_URL = "mongodb://localhost:27017/havenlygo";
 const dburl = process.env.ATLAS_URL; // Replace with your MongoDB URI
 
@@ -46,7 +49,7 @@ main().then(() => {
     console.log('Error connecting to MongoDB:', err);
 })
 async function main() {
-    await mongoose.connect(dburl);
+    mongoose.connect(dburl);
 }
 
 const store = MongoStore.create({
@@ -99,6 +102,8 @@ app.get('/', async (req, res) => {
 });
 
 app.use('/listings', listingRoutes);
+app.use('/orders', ordersRoutes);
+app.use('/listings/:listId/booking', bookingRoutes);
 app.use('/listings/:id/reviews', reviewRoutes);
 app.use('/', userRoutes);
 
