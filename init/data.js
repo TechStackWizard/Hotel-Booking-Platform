@@ -1,180 +1,114 @@
 const sampleListings = [
     {
-        title: "Cozy Beachfront Cottage",
-        description: "Escape to this charming beachfront cottage for a relaxing getaway. Enjoy stunning ocean views and easy access to the beach.",
+        title: "Luxury Beach Resort",
+        description: "Perfect for a relaxing coastal getaway, this beachfront resort offers stunning sea views, private beach access, infinity pool, and premium spa services. Ideal for couples and luxury travelers seeking comfort and serenity.",
+        price: 8500,
+        location: "Goa",
+        country: "India",
         image: {
-            url: "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-            filename: "havenlygo"
-        },
-        price: 1500,
-        location: "Malibu",
-        country: "United States",
+            url: "https://images.unsplash.com/photo-1501117716987-c8e1ecb210d3",
+            filename: 'havenlygo'
+        }
     },
     {
-        title: "Modern Loft in Downtown",
-        description: "Stay in the heart of the city in this stylish loft apartment. Perfect for urban explorers!",
+        title: "Mountain View Cottage",
+        description: "Surrounded by scenic hills, this cozy cottage is perfect for nature lovers and remote workers. Enjoy peaceful mornings, fresh mountain air, and breathtaking sunset views right from your balcony.",
+        price: 4200,
+        location: "Manali",
+        country: "India",
         image: {
-            url: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-            filename: "havenlygo"
-        },
-        price: 1200,
-        location: "New York City",
-        country: "United States",
+            url: "https://images.unsplash.com/photo-1505691938895-1758d7feb511",
+            filename: 'havenlygo'
+        }
     },
     {
-        title: "Mountain Retreat",
-        description: "Unplug and unwind in this peaceful mountain cabin. Surrounded by nature, it's a perfect place to recharge.",
+        title: "City Center Apartment",
+        description: "Located in the heart of the city, this modern apartment is ideal for business travelers and tourists. Close to major attractions, shopping hubs, and public transport for easy accessibility.",
+        price: 6000,
+        location: "Delhi",
+        country: "India",
         image: {
-            url: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aG90ZWxzfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-            filename: "havenlygo"
-        },
-        price: 1000,
-        location: "Aspen",
-        country: "United States",
+            url: "https://images.unsplash.com/photo-1493809842364-78817add7ffb",
+            filename: 'havenlygo'
+        }
     },
     {
-        title: "Historic Villa in Tuscany",
-        description: "Experience the charm of Tuscany in this beautifully restored villa. Explore the rolling hills and vineyards.",
+        title: "Royal Palace Stay",
+        description: "Experience royal heritage living in this grand palace hotel featuring antique interiors, cultural performances, and fine dining. Best suited for luxury seekers and cultural explorers.",
+        price: 12000,
+        location: "Jaipur",
+        country: "India",
         image: {
-            url: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG90ZWxzfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-            filename: "havenlygo"
-        },
-        price: 2500,
-        location: "Florence",
-        country: "Italy",
+            url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb",
+            filename: 'havenlygo'
+        }
     },
     {
-        title: "Secluded Treehouse Getaway",
-        description: "Live among the treetops in this unique treehouse retreat. A true nature lover's paradise.",
+        title: "Lake Side Villa",
+        description: "A peaceful lakeside retreat offering scenic water views, private garden space, and a relaxing atmosphere. Perfect for family vacations and romantic escapes.",
+        price: 7500,
+        location: "Udaipur",
+        country: "India",
         image: {
-            url: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGhvdGVsc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-            filename: "havenlygo"
-        },
-        price: 800,
-        location: "Portland",
-        country: "United States",
+            url: "https://images.unsplash.com/photo-1505691723518-36a5ac3be353",
+            filename: 'havenlygo'
+        }
     },
     {
-        title: "Beachfront Paradise",
-        description: "Step out of your door onto the sandy beach. This beachfront condo offers the ultimate relaxation.",
+        title: "Snow Retreat Resort",
+        description: "A winter paradise surrounded by snow-covered landscapes. Enjoy cozy interiors, bonfire nights, and adventure activities like skiing and trekking.",
+        price: 9000,
+        location: "Shimla",
+        country: "India",
         image: {
-            url: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdGVsc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-            filename: "havenlygo"
-        },
-        price: 2000,
-        location: "Cancun",
-        country: "Mexico",
+            url: "https://images.unsplash.com/photo-1484154218962-a197022b5858",
+            filename: 'havenlygo'
+        }
     },
     {
-        title: "Rustic Cabin by the Lake",
-        description: "Spend your days fishing and kayaking on the serene lake. This cozy cabin is perfect for outdoor enthusiasts.",
+        title: "Beachside Bungalow",
+        description: "Stay just steps away from the beach in this private bungalow. Ideal for travelers who love sunsets, sea breeze, and a peaceful coastal lifestyle.",
+        price: 6800,
+        location: "Kerala",
+        country: "India",
         image: {
-            url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1vdW50YWlufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-            filename: "havenlygo"
-        },
-        price: 900,
-        location: "Lake Tahoe",
-        country: "United States",
+            url: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5",
+            filename: 'havenlygo'
+        }
     },
     {
-        title: "Luxury Penthouse with City Views",
-        description: "Indulge in luxury living with panoramic city views from this stunning penthouse apartment.",
+        title: "Desert Camp Experience",
+        description: "Experience desert life in luxury tents with cultural performances, camel rides, and stargazing nights. A unique stay for adventure seekers and explorers.",
+        price: 5000,
+        location: "Jaisalmer",
+        country: "India",
         image: {
-            url: "https://images.unsplash.com/photo-1622396481328-9b1b78cdd9fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2t5JTIwdmFjYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-            filename: "havenlygo"
-        },
-        price: 3500,
-        location: "Los Angeles",
-        country: "United States",
+            url: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+            filename: 'havenlygo'
+        }
     },
     {
-        title: "Ski-In/Ski-Out Chalet",
-        description: "Hit the slopes right from your doorstep in this ski-in/ski-out chalet in the Swiss Alps.",
+        title: "Modern Studio Apartment",
+        description: "Compact yet stylish studio designed for solo travelers and professionals. Offers high-speed internet, workspace, and proximity to business districts.",
+        price: 4500,
+        location: "Mumbai",
+        country: "India",
         image: {
-            url: "https://images.unsplash.com/photo-1502784444187-359ac186c5bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHNreSUyMHZhY2F0aW9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-            filename: "havenlygo"
-        },
-        price: 3000,
-        location: "Verbier",
-        country: "Switzerland",
+            url: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae",
+            filename: 'havenlygo'
+        }
     },
     {
-        title: "Safari Lodge in the Serengeti",
-        description: "Experience the thrill of the wild in a comfortable safari lodge. Witness the Great Migration up close.",
+        title: "Hilltop Luxury Resort",
+        description: "Perched on a hilltop, this resort offers panoramic views, premium amenities, and a tranquil environment. Ideal for luxury vacations and peaceful retreats.",
+        price: 11000,
+        location: "Ooty",
+        country: "India",
         image: {
-            url: "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fG1vdW50YWlufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-            filename: "havenlygo"
-        },
-        price: 4000,
-        location: "Serengeti National Park",
-        country: "Tanzania",
-    },
-    {
-        title: "Historic Canal House",
-        description: "Stay in a piece of history in this beautifully preserved canal house in Amsterdam's iconic district.",
-        image: {
-            url: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-            filename: "havenlygo"
-        },
-        price: 1800,
-        location: "Amsterdam",
-        country: "Netherlands",
-    },
-    {
-        title: "Private Island Retreat",
-        description: "Have an entire island to yourself for a truly exclusive and unforgettable vacation experience.",
-        image: {
-            url: "https://images.unsplash.com/photo-1618140052121-39fc6db33972?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bG9kZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-            filename: "havenlygo"
-        },
-        price: 10000,
-        location: "Fiji",
-        country: "Fiji",
-    },
-    {
-        title: "Charming Cottage in the Cotswolds",
-        description: "Escape to the picturesque Cotswolds in this quaint and charming cottage with a thatched roof.",
-        image: {
-            url: "https://images.unsplash.com/photo-1602088113235-229c19758e9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmVhY2glMjB2YWNhdGlvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-            filename: "havenlygo"
-        },
-        price: 1200,
-        location: "Cotswolds",
-        country: "United Kingdom",
-    },
-    {
-        title: "Historic Brownstone in Boston",
-        description: "Step back in time in this elegant historic brownstone located in the heart of Boston.",
-        image: {
-            url: "https://images.unsplash.com/photo-1533619239233-6280475a633a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHNreSUyMHZhY2F0aW9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-            filename: "havenlygo"
-        },
-        price: 2200,
-        location: "Boston",
-        country: "United States",
-    },
-    {
-        title: "Beachfront Bungalow in Bali",
-        description: "Relax on the sandy shores of Bali in this beautiful beachfront bungalow with a private pool.",
-        image: {
-            url: "https://images.unsplash.com/photo-1602391833977-358a52198938?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-            filename: "havenlygo"
-        },
-        price: 1800,
-        location: "Bali",
-        country: "Indonesia",
-    },
-    {
-        title: "Mountain View Cabin in Banff",
-        description: "Enjoy breathtaking mountain views from this cozy cabin in the Canadian Rockies.",
-        image: {
-            url: "https://images.unsplash.com/photo-1521401830884-6c03c1c87ebb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-            filename: "havenlygo"
-        },
-        price: 1500,
-        location: "Banff",
-        country: "Canada",
+            url: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
+            filename: 'havenlygo'
+        }
     }
 ];
 
-module.exports = { data: sampleListings };
+module.exports = sampleListings;

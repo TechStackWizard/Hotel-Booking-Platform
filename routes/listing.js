@@ -4,7 +4,6 @@ const Listing = require('../models/listing');
 const wrapAsync = require('../utils/WrapAsync.js')
 const { isLoggedIn, isOwner, validateListing } = require('../middleware.js');
 const Booking = require("../models/booking.js");
-
 const listingController = require('../controllers/listings.js')
 
 const multer = require('multer')

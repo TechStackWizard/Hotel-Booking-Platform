@@ -14,6 +14,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user.js');
 const Listing = require('./models/listing.js');
+const aiRoutes = require('./routes/ai');
 
 
 const ExpressError = require('./utils/ExpressError.js')
@@ -106,6 +107,7 @@ app.use('/orders', ordersRoutes);
 app.use('/listings/:listId/booking', bookingRoutes);
 app.use('/listings/:id/reviews', reviewRoutes);
 app.use('/', userRoutes);
+app.use('/ai', aiRoutes);
 
 
 
